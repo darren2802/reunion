@@ -22,4 +22,11 @@ class TestActivity < Minitest::Test
     assert_equal 60, @activity.total_cost
   end
 
+  def test_activity_split_and_owed
+    @activity.add_participant('Maria', 20)
+    @activity.add_participant('Luther', 40)
+    assert_equal 30, @activity.split
+    assert_equal ({"Maria" => 10, "Luther" => -10}), @activity.owed
+  end
+
 end
